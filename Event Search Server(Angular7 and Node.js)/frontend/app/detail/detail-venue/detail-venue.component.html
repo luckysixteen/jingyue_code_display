@@ -1,0 +1,41 @@
+<!-- Venue Name -->
+<h6 class="text-center">
+    {{venue.name}}
+</h6>
+
+<div class="mb-4">
+    <!-- Venue Info -->
+    <table class="table table-striped">
+        <tr *ngIf="venue.address !== ''">
+            <th scope="row">Address</th>
+            <td>{{venue.address}}</td>
+        </tr>
+        <tr *ngIf="!(venue.city === '' && venue.state === '')">
+            <th scope="row">City</th>
+            <td *ngIf="venue.state === ''">{{venue.city}}</td>
+            <td *ngIf="venue.city === ''">{{venue.state}}</td>
+            <td *ngIf="venue.city !== '' && venue.state !== ''">{{venue.city}}, {{venue.state}}</td>
+        </tr>
+        <tr *ngIf="venue.phone !== ''">
+            <th style="white-space: nowrap;" scope="row">Phone Number</th>
+            <td>{{venue.phone}}</td>
+        </tr>
+        <tr *ngIf="venue.openHour !== ''">
+            <th style="white-space: nowrap;" scope="row">Open Hours</th>
+            <td>{{venue.openHour}}</td>
+        </tr>
+        <tr *ngIf="venue.generalRule !== ''">
+            <th style="white-space: nowrap;" scope="row">General Rule</th>
+            <td>{{venue.generalRule}}</td>
+        </tr>
+        <tr *ngIf="venue.childRule !== ''">
+            <th style="white-space: nowrap;" scope="row">Child Rule</th>
+            <td>{{venue.childRule}}</td>
+        </tr>
+    </table>
+    
+    <!-- Goole Map -->
+    <agm-map *ngIf="venue.geo !== []" [latitude]="venue.geo[0]" [longitude]="venue.geo[1]" [zoom]=14 style="width: 100%; height: 380px;">
+        <agm-marker [latitude]="venue.geo[0]" [longitude]="venue.geo[1]"></agm-marker>
+    </agm-map>
+</div>

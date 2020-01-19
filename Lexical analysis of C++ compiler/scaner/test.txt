@@ -1,0 +1,12 @@
+int main()
+{
+	/*test*/
+	int fjy1,fjy2;
+	fjy1=9;
+	fjy2=3;
+	if(fjy1==9)
+	{
+		fjy2=6;
+	}
+	return 0 ;
+}

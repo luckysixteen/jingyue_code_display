@@ -1,0 +1,54 @@
+<!-- Controller -->
+<div class="row m-2">
+    <select 
+        class="custom-select custom-select-sm col-3"
+        [ngModel]="defaultPath"
+        (change)="sortChange()"
+        #sort>
+        <option value="default" selected>Default</option>
+        <option value="name">Event Name</option>
+        <option value="date">Time</option>
+        <option value="artist">Artist</option>
+        <option value="type">Type</option>
+    </select>
+    <select 
+        class="custom-select custom-select-sm col-3"
+        [ngModel]="defaultOrder"
+        [disabled]="isDefault"
+        #order>
+        <option value="1" selected>Ascending</option>
+        <option value="-1">Descending</option>
+    </select>
+</div>
+
+<!-- Upcoming Event List -->
+<div class="container-fluid p-0" *ngIf="upcomingEvents.length !== 0">
+    <!-- Events -->
+    <div class="container-fuild border rounded my-2 p-4" *ngFor="let event of (isMore? (upcomingEvents) : (upcomingEvents| slice: 0:5)) | UpcomingSort:sort.value:order.value ; let i = index">
+        <p class="font-weight-bold mt-0 mb-1"><a class="text-primary" [href]="event.eventUrl" target="_blank">{{event.name}}</a></p>
+        <h6 class="mb-1" style="color: darkorange">Artist: <span>{{event.artist}} </span> 
+            <span class="text-secondary"> {{event.date | date}} {{event.time}}</span></h6>
+        <h6 class="mb-3">Type: {{event.type}}</h6>
+    </div>
+
+    <!-- Button -->
+    <div class="text-center" *ngIf="upcomingEvents.length > 5">
+            <button 
+                class="btn btn-primary my-5" 
+                (click)="showMore()"
+                *ngIf="!isMore"
+                >Show more</button>
+            <button 
+                class="btn btn-primary mt-2 mb-5"  
+                (click)="showLess()"
+                *ngIf="isMore"
+                >Show less</button>
+    </div>
+</div>
+
+<!-- No Upcoming Event -->
+<div class="container-fluid p-0" *ngIf="upcomingEvents.length === 0">
+    <div class="alert alert-warning" role="alert" style="margin: 100px auto;">
+        No records.
+    </div>
+</div>

@@ -1,0 +1,8 @@
+.table-warning:hover th, .table-warning:hover td  {
+    background-color: rgb(236, 236, 236);
+}
+
+.tooltip {
+    font-size: 15px;
+    margin-top: 10px; 
+}

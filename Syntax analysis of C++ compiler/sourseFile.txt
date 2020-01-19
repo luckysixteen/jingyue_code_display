@@ -1,0 +1,33 @@
+
+
+int addDigits(int num) {
+    if(num<10)
+    return num;
+    else
+    {
+        int a;int b;
+        a=num-10;
+        b=num/10;
+        if(a<10)
+        addDigits(a+b);
+        else addDigits(a+addDigits(b));
+    }
+    
+}
+int number[2];
+void main(void)
+{
+	
+	int i;
+	i=0;
+	
+	while(i<2)
+    {
+	number[i]=input();
+	i=i+1;
+	number[i]=addDigits(number[i]);
+	output(number[i]);
+
+    }
+	
+}

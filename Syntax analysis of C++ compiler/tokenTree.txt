@@ -1,0 +1,98 @@
+FuncK
+    IntK
+    IdK: addDigits
+    ParamsK
+        ParamK
+            IntK
+            IdK: num
+    CompK
+        If
+            Op:11
+                IdK: num
+                ConstK: 10
+            Return
+                IdK: num
+            CompK
+                Var_DeclK
+                    IntK
+                    IdK: a
+                Var_DeclK
+                    IntK
+                    IdK: b
+                Assign
+                    IdK: a
+                    Op:8
+                        IdK: num
+                        ConstK: 10
+                Assign
+                    IdK: b
+                    Op:10
+                        IdK: num
+                        ConstK: 10
+                If
+                    Op:11
+                        IdK: a
+                        ConstK: 10
+                    CallK
+                        IdK: addDigits
+                        ArgsK
+                            Op:7
+                                IdK: a
+                    CallK
+                        IdK: addDigits
+                        ArgsK
+                            Op:7
+                                IdK: a
+                                CallK
+                                    IdK: addDigits
+                                    ArgsK
+                                        IdK: b
+Var_DeclK
+    IntK
+    Arry_DeclK
+        IdK: number
+        ConstK: 2
+FuncK
+    VoidK
+    IdK: main
+    ParamsK
+        VoidK
+    CompK
+        Var_DeclK
+            IntK
+            IdK: i
+        Assign
+            IdK: i
+            ConstK: 0
+        While
+            Op:11
+                IdK: i
+                ConstK: 2
+            CompK
+                Assign
+                    Arry_ElemK
+                        IdK: number
+                        IdK: i
+                    CallK
+                        IdK: input
+                Assign
+                    IdK: i
+                    Op:7
+                        IdK: i
+                        ConstK: 1
+                Assign
+                    Arry_ElemK
+                        IdK: number
+                        IdK: i
+                    CallK
+                        IdK: addDigits
+                        ArgsK
+                            Arry_ElemK
+                                IdK: number
+                                IdK: i
+                CallK
+                    IdK: output
+                    ArgsK
+                        Arry_ElemK
+                            IdK: number
+                            IdK: i

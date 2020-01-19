@@ -1,0 +1,73 @@
+<!-- NO FAVORITE -->
+<div class="alert alert-warning" role="alert" style="margin: 100px auto;">
+    No records.
+</div>
+
+
+<div class="mt-4">
+    <!-- Detail button -->
+    <div class="d-flex justify-content-end">
+        <button 
+            class="btn btn-light" 
+            type="submit"  
+            (click)="showDetail()" 
+            [disabled]="!isSelected"
+            [hidden]="results.length === 0">
+            Details <i class="material-icons">keyboard_arrow_right</i>
+        </button>
+    </div>
+
+    <!-- Result List -->
+    <div class="container-fluid mt-2 pl-0 table-responsive" *ngIf="results.length !== 0">
+        <table class="table table-hover" style="min-width: 950px">
+            <thead>
+                <tr>
+                    <th style="width: 5%" scope="col">#</th>
+                    <th style="width: 12%" scope="col">Date</th>
+                    <th style="max-width: 25%" scope="col">Event</th>
+                    <th style="width: auto" scope="col">Category</th>
+                    <th style="width: auto" scope="col">Venue Info</th>
+                    <th style="width: 5%" scope="col">Favorite</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let result of results | ResultSort; let i = index" [id]="'result'+i">
+                    <th scope="row">{{i+1}}</th>
+                    <td> {{result.date}} </td>
+                    <td>
+                        <a 
+                            mat-raised-button 
+                            [matTooltip]="result.name"
+                            matTooltipPosition="below"
+                            href="#">
+                            <span 
+                                [innerText]="trimName(result.name)" 
+                                (click)="onClickEvent(result, i)"
+                            ></span>
+                        </a>
+                    </td>
+                    <td>
+                        <span *ngIf="result.category.length === 1">
+                            <span>{{result.category[0]}}</span>
+                        </span>
+                        <span *ngIf="result.category.length > 1">
+                            <span *ngFor="let cat of result.category">
+                                <span *ngIf="cat === result.category[0]">{{cat}}</span>
+                                <span *ngIf="cat !== result.category[0]">-{{cat}}</span>
+                            </span>
+                        </span>
+                        
+                    </td>
+                    <td>{{result.venueName}}</td>
+                    <td class="py-2">
+                        <button 
+                            class="btn btn-light btn-sm"
+                            (click)="unFavorite(result.eventId)"
+                            [hidden]="result.isFavorite"><i class="material-icons">delete</i></button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

@@ -1,0 +1,17 @@
+@media (min-width: 480px){
+    .largeBar {
+        display: block;
+    }
+    .smallBar {
+        display: none;
+    }
+}
+
+@media (max-width: 480px){
+    .largeBar {
+        display: none;
+    }
+    .smallBar {
+        display: block;
+    }
+}

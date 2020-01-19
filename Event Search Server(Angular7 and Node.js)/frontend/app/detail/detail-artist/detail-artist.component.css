@@ -1,0 +1,44 @@
+#photos {
+   /* line-height: 1.6; */
+   
+   -webkit-column-count: 3;
+   -webkit-column-gap:   20px;
+   -moz-column-count:    3;
+   -moz-column-gap:      20px;
+   column-count:         3;
+   column-gap:           20px;
+}
+
+#photos img {
+  border: solid 2px rgb(225, 225, 225);
+  border-radius: 3px;
+  padding: 3px;
+  margin-top: 0.8rem;
+  width: 100% !important;
+  height: auto !important;
+}
+
+@media (max-width: 480px) {
+  #photos {
+  -moz-column-count:    1;
+  -webkit-column-count: 1;
+  column-count:         1;
+  }
+}
+
+.positionRelative{
+    position: relative;
+    width: 40px;
+    height: 40px;
+    float: left;
+    padding: 0px;
+}
+
+.percentageValue {
+    /* left: 10px; */
+    top: 9px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-size: 15px;
+}

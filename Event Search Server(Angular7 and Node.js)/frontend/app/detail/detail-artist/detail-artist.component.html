@@ -1,0 +1,51 @@
+<div *ngFor="let artist of artists">
+    <h6 class="text-center mt-4">{{artist.name}}</h6>
+    
+    <!-- Spotify section -->
+    <table class="table table-striped" *ngIf="artist.isMusic">
+        <tr>
+            <th scope="row" style="width: 50%">Name</th>
+            <td style="width: 50%">{{artist.name}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Followers</th>
+            <td>{{artist.followers | number:'2.'}}</td>
+        </tr>
+        <tr>
+            <th scope="row">Popularity</th>
+            <td>
+                <div class="positionRelative">
+                <round-progress 
+                    [radius]="20"
+                    [stroke]="3"
+                    [clockwise]="false"
+                    [color]="'#54bb2c'"
+                    [responsive]=true
+                    [current]="artist.popularity" 
+                    [max]="100"></round-progress>
+                <div class="percentageValue">
+                    {{artist.popularity}}
+                </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <th scope="row">Check At</th>
+            <td><a [href]="artist.checkAtUrl" target="_blank">Spotify</a></td>
+        </tr>
+    </table>
+
+    <!-- Photos section -->
+    <section id="photos">
+        <a *ngFor="let img of artist.imgUrl" [href]="img" target="_blank">
+            <img [src]="img" />
+        </a>
+    </section>
+</div>
+
+<!-- No Upcoming Event -->
+<div class="container-fluid p-0" *ngIf="artists.length === 0">
+    <div class="alert alert-warning" role="alert" style="margin: 100px auto;">
+        No records.
+    </div>
+</div>

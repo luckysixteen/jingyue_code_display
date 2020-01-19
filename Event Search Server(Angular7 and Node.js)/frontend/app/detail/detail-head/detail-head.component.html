@@ -1,0 +1,76 @@
+<!-- Detail-Head -->
+<div class="container-fluid">
+    <!-- Title -->
+    <h5 class="text-center mt-5">{{eventDetail.eventDetail.name}}</h5> 
+
+    <!-- Toolbar -->
+    <div class="row justify-content-between">
+        <div class="col-6 pl-0" >
+            <button class="btn btn-light" (click)="onReturnList()">
+                <i class="material-icons">keyboard_arrow_left</i>List
+            </button>
+        </div>
+        <div class="col-6">
+            <div class="row justify-content-end">
+                <button class="btn p-0">
+                    <a 
+                        class="twitter-share-button" 
+                        [href]="'https://twitter.com/intent/tweet?text=' + twitterText + '&hashtags=CSCI571EventSearch'"
+                        target="_blank">
+                    <img src="http://csci571.com/hw/hw8/Images/Twitter.png" style="height: 38px;">
+                    </a>          
+                </button>
+                <button 
+                    class="btn btn-light ml-2" 
+                    (click)="onFavorite(eventDetail.eventDetail.eventId)"
+                    [hidden]="eventDetail.eventDetail.isFavorite">
+                    <i class="material-icons" >star_border</i>
+                </button>
+                <button 
+                    class="btn btn-light ml-2" 
+                    (click)="unFavorite(eventDetail.eventDetail.eventId)"
+                    [hidden]="!eventDetail.eventDetail.isFavorite">
+                    <i class="material-icons" style="color: gold;">star</i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="mt-2 mb-4">
+        <nav>
+            <div class="nav nav-tabs row justify-content-end" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active" id="nav-event-tab" data-toggle="tab" href="#nav-event" role="tab" aria-controls="nav-event" aria-selected="true">
+                    Event
+                </a>
+                <a class="nav-item nav-link" id="nav-at-tab" data-toggle="tab" href="#nav-at" role="tab" aria-controls="nav-at" aria-selected="false">
+                    <span class="largeBar">Artist/Teams</span>
+                    <span class="smallBar">Artist</span>
+                </a>
+                <a class="nav-item nav-link" id="nav-venue-tab" data-toggle="tab" href="#nav-venue" role="tab" aria-controls="nav-venue" aria-selected="false">
+                    Venue
+                </a>
+                <a class="nav-item nav-link" id="nav-upcoming-tab" data-toggle="tab" href="#nav-upcoming" role="tab" aria-controls="nav-upcoming" aria-selected="false">
+                    <span class="largeBar">Upcoming Events</span>
+                    <span class="smallBar">Upcoming</span>
+                </a>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<!-- Detail-Content -->
+<div class="tab-content container-fluid p-0" id="nav-tabContent">
+    <div class="tab-pane fade show active" id="nav-event" role="tabpanel" aria-labelledby="nav-event-tab">
+        <app-detail-event [event]="eventDetail.eventDetail"></app-detail-event>
+    </div>
+    <div class="tab-pane fade" id="nav-at" role="tabpanel" aria-labelledby="nav-at-tab">
+        <app-detail-artist [artists]="eventDetail.artists"></app-detail-artist>
+    </div>
+    <div class="tab-pane fade" id="nav-venue" role="tabpanel" aria-labelledby="nav-venue-tab">
+        <app-detail-venue [venue]="eventDetail.venue"></app-detail-venue>
+    </div>
+    <div class="tab-pane fade" id="nav-upcoming" role="tabpanel" aria-labelledby="nav-upcoming-tab">
+        <app-detail-upcoming [upcomingEvents]="eventDetail.upcomingEvents"></app-detail-upcoming>
+    </div>
+</div>

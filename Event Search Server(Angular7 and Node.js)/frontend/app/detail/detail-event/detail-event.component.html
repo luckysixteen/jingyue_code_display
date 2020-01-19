@@ -1,0 +1,69 @@
+<div class="table-responsive">
+    <table class="table table-striped" style="min-width: 300px;">
+        <tbody>
+            <tr *ngIf="event.artists.length !== 0">
+                <th scope="row">Artist/Team(s)</th>
+                <td *ngIf="event.artists.length === 1">{{event.artists[0]}}</td>
+                <td *ngIf="event.artists.length > 1">
+                    <span *ngFor="let artist of event.artists; let i = index">
+                        <span *ngIf="i === 0">{{artist}}</span>
+                        <span *ngIf="i !== 0"> | {{artist}}</span>
+                    </span>
+                </td>
+            </tr>
+            <tr *ngIf="event.venueName !== ''">
+                <th scope="row" h>Venue</th>
+                <td>{{event.venueName}}</td>
+            </tr>
+            <tr *ngIf="!(event.date === '' && event.time === '')">
+                <th scope="row">Time</th>
+                <td>{{event.date | date}} {{event.time}}</td>
+            </tr>
+            <tr *ngIf="event.category.length !== 0">
+                <th scope="row">Category</th>
+                <td *ngIf="event.category.length === 1">{{event.category[0]}}</td>
+                <td *ngIf="event.category.length === 2">{{event.category[0]}} | {{event.category[1]}}</td>
+            </tr>
+            <tr *ngIf="event.priceRange.length !== 0">
+                <th scope="row">Price Range</th>
+                <td *ngIf="event.priceRange.length === 1">{{event.priceRange[0] | currency:event.currency}}</td>
+                <td *ngIf="event.priceRange.length === 2">
+                    {{event.priceRange[0] | currency:event.currency}} ~ {{event.priceRange[1] | currency:event.currency}}
+                </td>
+            </tr>
+            <tr *ngIf="event.ticketStatus !== ''">
+                <th scope="row">Ticket Status</th>
+                <td>{{event.ticketStatus}}</td>
+            </tr>
+            <tr *ngIf="event.buyUrl !== ''">
+                <th scope="row">Buy Ticket At</th>
+                <td><a [href]="event.buyUrl" target="_blank">Ticketmaster</a></td>
+            </tr>
+            <tr *ngIf="event.seatMapUrl !== ''">
+                <th scope="row">Seat Map</th>
+                <td><a data-toggle="modal" data-target="#seatMap" [href]="event.seatMapUrl">View Seat Map Here</a></td>
+                <!-- Modal -->
+                <div class="modal" id="seatMap" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">View Seat Map</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body row">
+                                <a [href]="event.seatMapUrl" target="_blank">
+                                    <img [src]="event.seatMapUrl" style="max-width: 100%; max-height: 100%; display:block;">                                    
+                                </a>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-light" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </tr>
+        </tbody>
+    </table>
+</div>
